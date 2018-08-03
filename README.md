@@ -1,10 +1,10 @@
 # @elunic/debug-levels
 
-<img width="666" src="https://raw.githubusercontent.com/elunic/debug-levels/master/examples/example.png">
-
-A thin wrapper around the `visionmedia/debug` module, providing support for both:
+Thin wrapper around the `visionmedia/debug` module, providing support for both:
 * debug levels (fatal, error, warn, info, debug, trace)
 * easy creation of child namespaces
+
+<img width="666" src="https://raw.githubusercontent.com/elunic/debug-levels/master/examples/example.png">
 
 The decision to write a new wrapper rather than use an existing one 
 (such as `debug-level`, `debug-levels`) was made because of the requirement
