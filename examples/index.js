@@ -1,10 +1,12 @@
-const debuglevels = require('@elunic/debug-levels');
+const debuglevels = require('../src/index');
 
 debuglevels.enable('*');
 debuglevels.setLevel('trace');
 
-const loggerA = debuglevels('worker:a');
-const loggerB = debuglevels('worker:b');
+const workerLogger = debuglevels('worker');
+
+const loggerA = workerLogger.createLogger('a');
+const loggerB = workerLogger.createLogger('b');
 
 loggerA.info('info');
 loggerB.info('info');
