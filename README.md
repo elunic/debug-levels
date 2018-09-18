@@ -1,5 +1,7 @@
 # @elunic/debug-levels
 
+[![Build Status](https://travis-ci.org/elunic/debug-levels.svg?branch=master)](https://travis-ci.org/elunic/debug-levels)
+
 Thin wrapper around the `visionmedia/debug` module, providing support for both:
 * debug levels (fatal, error, warn, info, debug, trace)
 * easy creation of child namespaces
