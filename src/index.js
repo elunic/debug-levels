@@ -195,6 +195,23 @@ createLogger.getLevel = function () {
     return logLevelsByNum[currentLogLevelNum];
 };
 
+/**
+ *
+ * @param {string|int} level The loglevel, either by name (string) or numerical (int)
+ * @returns {boolean}
+ */
+createLogger.levelEnabled = function (level) {
+    if (!(level in logLevelsByName) && !(level in logLevelsByNum)) {
+        throw new Error('"level" must be either a numeric log level or a log level name.');
+    }
+
+    if (typeof level === 'number') {
+        return currentLogLevelNum <= level;
+    } else {
+        return currentLogLevelNum <= logLevelsByName[level];
+    }
+};
+
 // Define "level" as a convenience property on the main createLogger object
 Object.defineProperty(createLogger, 'level', {
     get() {

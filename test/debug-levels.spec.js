@@ -114,48 +114,48 @@ describe('debuglevels', function() {
             fatal: {
                 fatal: {error: 1, warn: 0, log: 0, debug: 0},
                 error: {error: 0, warn: 0, log: 0, debug: 0},
-                warn: {error: 0, warn: 0, log: 0, debug: 0},
-                info: {error: 0, warn: 0, log: 0, debug: 0},
+                warn:  {error: 0, warn: 0, log: 0, debug: 0},
+                info:  {error: 0, warn: 0, log: 0, debug: 0},
                 debug: {error: 0, warn: 0, log: 0, debug: 0},
                 trace: {error: 0, warn: 0, log: 0, debug: 0},
             },
             error: {
                 fatal: {error: 1, warn: 0, log: 0, debug: 0},
                 error: {error: 1, warn: 0, log: 0, debug: 0},
-                warn: {error: 0, warn: 0, log: 0, debug: 0},
-                info: {error: 0, warn: 0, log: 0, debug: 0},
+                warn:  {error: 0, warn: 0, log: 0, debug: 0},
+                info:  {error: 0, warn: 0, log: 0, debug: 0},
                 debug: {error: 0, warn: 0, log: 0, debug: 0},
                 trace: {error: 0, warn: 0, log: 0, debug: 0},
             },
             warn: {
                 fatal: {error: 1, warn: 0, log: 0, debug: 0},
                 error: {error: 1, warn: 0, log: 0, debug: 0},
-                warn: {error: 0, warn: 1, log: 0, debug: 0},
-                info: {error: 0, warn: 0, log: 0, debug: 0},
+                warn:  {error: 0, warn: 1, log: 0, debug: 0},
+                info:  {error: 0, warn: 0, log: 0, debug: 0},
                 debug: {error: 0, warn: 0, log: 0, debug: 0},
                 trace: {error: 0, warn: 0, log: 0, debug: 0},
             },
             info: {
                 fatal: {error: 1, warn: 0, log: 0, debug: 0},
                 error: {error: 1, warn: 0, log: 0, debug: 0},
-                warn: {error: 0, warn: 1, log: 0, debug: 0},
-                info: {error: 0, warn: 0, log: 1, debug: 0},
+                warn:  {error: 0, warn: 1, log: 0, debug: 0},
+                info:  {error: 0, warn: 0, log: 1, debug: 0},
                 debug: {error: 0, warn: 0, log: 0, debug: 0},
                 trace: {error: 0, warn: 0, log: 0, debug: 0},
             },
             debug: {
                 fatal: {error: 1, warn: 0, log: 0, debug: 0},
                 error: {error: 1, warn: 0, log: 0, debug: 0},
-                warn: {error: 0, warn: 1, log: 0, debug: 0},
-                info: {error: 0, warn: 0, log: 1, debug: 0},
+                warn:  {error: 0, warn: 1, log: 0, debug: 0},
+                info:  {error: 0, warn: 0, log: 1, debug: 0},
                 debug: {error: 0, warn: 0, log: 0, debug: 1},
                 trace: {error: 0, warn: 0, log: 0, debug: 0},
             },
             trace: {
                 fatal: {error: 1, warn: 0, log: 0, debug: 0},
                 error: {error: 1, warn: 0, log: 0, debug: 0},
-                warn: {error: 0, warn: 1, log: 0, debug: 0},
-                info: {error: 0, warn: 0, log: 1, debug: 0},
+                warn:  {error: 0, warn: 1, log: 0, debug: 0},
+                info:  {error: 0, warn: 0, log: 1, debug: 0},
                 debug: {error: 0, warn: 0, log: 0, debug: 1},
                 trace: {error: 0, warn: 0, log: 0, debug: 1},
             },
@@ -191,5 +191,25 @@ describe('debuglevels', function() {
         childLogger.trace('hello855498');
 
         expect(fakeConsole.debug.callCount).toEqual(1);
+    });
+
+    describe('levelEnabled', function () {
+        it(`should return false when logLevel is info and the check is for debug`, function() {
+            debuglevels.setLevel('info');
+
+            expect(debuglevels.levelEnabled('debug')).toBeFalsy();
+        });
+
+        it(`should return true when logLevel is info and the check is for info`, function() {
+            debuglevels.setLevel('info');
+
+            expect(debuglevels.levelEnabled('info')).toBeTruthy();
+        });
+
+        it(`should return true when logLevel is info and the check is for fatal`, function() {
+            debuglevels.setLevel('info');
+
+            expect(debuglevels.levelEnabled('fatal')).toBeTruthy();
+        });
     });
 });
