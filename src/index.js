@@ -116,8 +116,8 @@ function createLogger(namespace) {
                 // On Node, the output MIGHT be prefixed with a timestamp (if the output is not a tty).
                 // In that case, we have to insert the level indication after the timestamp.
 
-                // When the output starts with a space, this (currently) indicates the output does not start with a timestamp
-                if (arguments[0].charAt(0) === ' ') {
+                // When the output starts with the namespace, this (currently) indicates the output does not start with a timestamp
+                if (arguments[0].substring(0, namespace.length) === namespace) {
                     // Output not prefixed by timestamp
                     arguments[0] = '  ' + paddedLogLevelNamesByNum[logLevel] + arguments[0];
                 } else {

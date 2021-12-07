@@ -11,7 +11,7 @@ jobs:
     name: test
     strategy:
       matrix:
-        node: [10, 12, 14]
+        node: [12, 14, 16]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -22,4 +22,4 @@ jobs:
       - name: npm install
         run: npm install
       - name: run unit tests
-        run: npm run test
+        run: npm run test:ci
